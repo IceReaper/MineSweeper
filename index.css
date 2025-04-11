@@ -1,0 +1,149 @@
+.minesweeper {
+    --backgroundColor: #bbb;
+
+    --borderColorDark: #888;
+    --borderColorLight: #fff;
+
+    --digit: #f00;
+    --display: #000;
+
+    --borderMargin: 6px;
+    --borderSizeThin: 1px;
+    --borderSizeThick: 2px;
+
+    --borderSizeDifference: calc(var(--borderSizeThick) - var(--borderSizeThin));
+
+    --faceColor: #ff0;
+
+    --frameColor: #444;
+    --frameSize: 1px;
+
+    --headerPadding: 3px 6px;
+
+    --markColor: #f00;
+
+    --number1Color: #00f;
+    --number2Color: #080;
+    --number3Color: #f00;
+    --number4Color: #008;
+    --number5Color: #800;
+    --number6Color: #088;
+    --number7Color: #000;
+    --number8Color: #888;
+
+    --mineColor: #000;
+    --shineColor: #fff;
+    --wrongColor: #f00;
+    --poleColor: #000;
+    --flagColor: #f00;
+    --questionColor: #000;
+
+    --spriteSheet: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAABFAgMAAAAOfl3SAAAADFBMVEUAAAD///+AgIAAAACK1GV6AAAAAXRSTlMAQObYZgAAAmRJREFUeF7NksFq4zAQhkdOBL4UsmDdVb9D2VNZObR3ZfHgy5a+Qi6lpxKnUPBj5SXMnpa+Qi6mp5D9FSmtgxwSFlp2CGL+zMdk5s/Q2SFJslVsxQxvKTm8h5Ai1PDxEGgvDyEGhq9KWVhFyBGlokNIMNFJiFCRlvj9tywJOzATsfGQ/wxD0vV2tTCNNAM/p8wpSLzvLELiTRmE7A5y0wBy7yfF2IkJCScyIh5k+GZXlRAC0xcmZtzgEBIY3mOQxLbYzFjficRxiGYmzCRpIBSz9x0beG6409kQm2j5aDth9ueRHfcJFkRQ5Lgz898jTN00xGwU2yTXgjkIVJzIc6JvPEtzPVU8eeGbSbMcc7lUrCFQgZimjaaMb5N0aV5Ke8lZlkupforbsoZARaqZeda1O9S0llMtbEMlhDTp0iZ6L1BJtIMSkqYWVgcoEZbqvUCFvrwTjE5IgLfIISQlwlC9F2LXCdYEn7w1wafnfBx8giCYDMcPTYZIm/pDhE6FN/kS9nMJMfGdUt8pzFT4MdIgwoBO9LYr/EJ5EGFViL5PhbcmDSKY5sTXd9rfU+FPKM1lomYQVjeZq4R7ghsfPulmGfmEy4xuPHIcN/6fxo81xGjbT6MYtfcQ17zupRF0wbwiavlXL42gK+Y5jZirXhpBLaPJxR23K/r98IiU0S+CuidAi6pbUdveuXSL9DBG3D1VdIVO81H18Ih0+7qZRxAzILxzn35fvL6dhK7vq3Z9BNp4yPNRp4orB/1x0KIbhsJKVcV+O+9GBC06QOgEn7hy/BbpsOOb2PHT/93pKzjrnj4t/gKgqzE2MjTkkAAAAABJRU5ErkJggg==);
+}
+
+.sprite {
+    background: var(--spriteSheet);
+    background-blend-mode: multiply;
+    mask: var(--spriteSheet);
+    image-rendering: pixelated;
+}
+
+.border-thick-up {
+    border-color: var(--borderColorLight) var(--borderColorDark) var(--borderColorDark) var(--borderColorLight);
+    border-style: solid;
+    border-width: var(--borderSizeThick);
+}
+
+.border-thick-down {
+    border-color: var(--borderColorDark) var(--borderColorLight) var(--borderColorLight) var(--borderColorDark);
+    border-style: solid;
+    border-width: var(--borderSizeThick);
+}
+
+.border-thin-down {
+    border-color: var(--borderColorDark) var(--borderColorLight) var(--borderColorLight) var(--borderColorDark);
+    border-style: solid;
+    border-width: var(--borderSizeThin);
+}
+
+.minesweeper {
+    background: var(--backgroundColor);
+    box-shadow: 0 0 0 var(--frameSize) var(--frameColor);
+    display: inline-block;
+    margin: var(--frameSize);
+}
+
+.minesweeper .header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: var(--borderMargin);
+    padding: var(--headerPadding);
+}
+
+.display {
+    background: var(--display);
+    display: flex;
+}
+
+.display .digit {
+    background-color: var(--digit);
+}
+
+.face {
+    border-color: var(--borderColorLight) var(--borderColorDark) var(--borderColorDark) var(--borderColorLight);
+    border-style: solid;
+    border-width: var(--borderSizeThick);
+}
+
+.face.active {
+    border-color: var(--borderColorDark);
+    border-style: solid;
+    border-width: var(--borderSizeThick) var(--borderSizeThin) var(--borderSizeThin) var(--borderSizeThick);
+    padding: 0 var(--borderSizeDifference) var(--borderSizeDifference) 0;
+}
+
+.face .sprite {
+    background-color: var(--faceColor);
+}
+
+.face.active .sprite {
+    left: var(--borderSizeDifference);
+    position: relative;
+    top: var(--borderSizeDifference);
+}
+
+.grid {
+    border-spacing: 0;
+    margin: var(--borderMargin);
+}
+
+.tile {
+    border-color: var(--borderColorLight) var(--borderColorDark) var(--borderColorDark) var(--borderColorLight);
+    border-style: solid;
+    border-width: var(--borderSizeThick);
+    padding: 0;
+}
+
+.tile.active {
+    border-color: var(--borderColorDark);
+    border-style: solid;
+    border-width: var(--borderSizeThin) 0 0 var(--borderSizeThin);
+    padding: var(--borderSizeDifference) var(--borderSizeThick) var(--borderSizeThick) var(--borderSizeDifference);
+}
+
+.tile.mark {
+    background-color: var(--markColor);
+}
+
+.tile .stack {
+    position: relative;
+}
+
+.tile .stack .sprite {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}

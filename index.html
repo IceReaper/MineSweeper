@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MineSweeper</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="index.js" type="text/javascript"></script>
+    <link href="index.css" rel="stylesheet" type="text/css">
+
+    <style>
+        body {
+            background: #fff;
+            color: #000;
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+        }
+
+        body.dark {
+            background: #000;
+            color: #fff;
+        }
+
+        body.dark .minesweeper {
+            --backgroundColor: #222;
+
+            --borderColorDark: #111;
+            --borderColorLight: #333;
+
+            --digit: #0f0;
+
+            --faceColor: #ff0;
+
+            --frameColor: #444;
+
+            --markColor: #f00;
+
+            --number1Color: #44f;
+            --number2Color: #484;
+            --number3Color: #f44;
+            --number4Color: #448;
+            --number5Color: #844;
+            --number6Color: #488;
+            --number7Color: #444;
+            --number8Color: #888;
+
+            --mineColor: #000;
+            --shineColor: #fff;
+            --wrongColor: #f00;
+            --poleColor: #888;
+            --flagColor: #0f0;
+            --questionColor: #888;
+        }
+
+        #game {
+            padding-top: 10px;
+        }
+    </style>
+
+    <script>
+        window.addEventListener("load", () => {
+            const mineSweeper = new MineSweeper();
+            mineSweeper.start(16, 16, 40);
+            document.getElementById("game").appendChild(mineSweeper.element);
+
+            document.getElementById("beginner").addEventListener("click", () => mineSweeper.start(9, 9, 10));
+            document.getElementById("intermediate").addEventListener("click", () => mineSweeper.start(16, 16, 40));
+            document.getElementById("expert").addEventListener("click", () => mineSweeper.start(30, 16, 99));
+            document.getElementById("theme").addEventListener("change", e => document.body.classList.toggle("dark", e.currentTarget.checked));
+        });
+    </script>
+</head>
+<body>
+<div>
+    <button id="beginner">Beginner</button>
+    <button id="intermediate">Intermediate</button>
+    <button id="expert">Expert</button>
+    <label><input type="checkbox" id="theme"/>Dark</label>
+</div>
+<div id="game"></div>
+</body>
+</html>
